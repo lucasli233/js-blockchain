@@ -14,7 +14,7 @@ class Block {
 		return SHA256(
 			this.index +
 				this.previousHash +
-				this.timestamp +
+				this.timestamp + 
 				JSON.stringify(this.data) +
 				this.nonce
 		).toString()
