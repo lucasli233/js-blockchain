@@ -14,7 +14,7 @@ class Block {
 		return SHA256(
 			this.index +
 				this.previousHash +
-				this.timestamp + 
+				this.timestamp +
 				JSON.stringify(this.data) +
 				this.nonce
 		).toString()
@@ -75,4 +75,3 @@ console.log("Mining block 2...")
 monkeCoin.addBlock(new Block(2, "27/03/2021", { amount: 6 }))
 console.log("Mining block 3...")
 monkeCoin.addBlock(new Block(2, "28/03/2021", { amount: 9 }))
-
