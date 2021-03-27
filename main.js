@@ -116,4 +116,4 @@ monkeCoin.minePendingTransactions("lucas-address")
 console.log(
 	"\n balance of Lucas is ",
 	monkeCoin.getBalanceOfAddress("lucas-address")
-)
+) 
