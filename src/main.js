@@ -125,3 +125,12 @@ console.log(
 	"Balance of Lucas is ",
 	monkeCoin.getBalanceOfAddress("lucas-address")
 )
+
+
+console.log("Starting the miner again...")
+monkeCoin.minePendingTransactions("lucas-address")
+
+console.log(
+	"Balance of Lucas is ",
+	monkeCoin.getBalanceOfAddress("lucas-address")
+)
