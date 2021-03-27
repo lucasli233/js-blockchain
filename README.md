@@ -1,3 +1,3 @@
 # js-blockchain
 
-Coded a blockchain in JavaScript to better understand how blockchain works
+Created a JavaScript blockchain with crypto-js to better understand how blockchain works
