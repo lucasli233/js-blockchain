@@ -7,6 +7,7 @@ class Block {
 		this.data = data
 		this.previousHash = previousHash
 		this.hash = this.calculateHash()
+		this.nonce = 0
 	}
 
 	calculateHash() {
@@ -14,14 +15,26 @@ class Block {
 			this.index +
 				this.previousHash +
 				this.timestamp +
-				JSON.stringify(this.data)
+				JSON.stringify(this.data) +
+				this.nonce
 		).toString()
+	}
+
+	mineBlock(difficult) {
+		while (
+			this.hash.substring(0, difficult) !== Array(difficult + 1).join("0")
+		) {
+			this.nonce++
+			this.hash = this.calculateHash()
+		}
+		console.log("Block mined: " + this.hash)
 	}
 }
 
 class Blockchain {
 	constructor() {
 		this.chain = [this.createGenesisBlock()]
+		this.difficult = 2
 	}
 
 	createGenesisBlock() {
@@ -34,7 +47,8 @@ class Blockchain {
 
 	addBlock(newBlock) {
 		newBlock.previousHash = this.getLatestBlock().hash
-		newBlock.hash = newBlock.calculateHash()
+		newBlock.mineBlock(this.difficult)
+
 		this.chain.push(newBlock)
 	}
 
@@ -54,15 +68,11 @@ class Blockchain {
 	}
 }
 
-let oblivionCoin = new Blockchain()
-oblivionCoin.addBlock(new Block(1, "26/03/2021", { amount: 3 }))
-oblivionCoin.addBlock(new Block(2, "27/03/2021", { amount: 6 }))
-oblivionCoin.addBlock(new Block(2, "28/03/2021", { amount: 9 }))
+let monkeCoin = new Blockchain()
+console.log("Mining block 1...")
+monkeCoin.addBlock(new Block(1, "26/03/2021", { amount: 3 }))
+console.log("Mining block 2...")
+monkeCoin.addBlock(new Block(2, "27/03/2021", { amount: 6 }))
+console.log("Mining block 3...")
+monkeCoin.addBlock(new Block(2, "28/03/2021", { amount: 9 }))
 
-console.log("Is blockchain valid? " + oblivionCoin.isChainValid())
-
-// console.log(JSON.stringify(oblivionCoin, null, 4))
-oblivionCoin.chain[1].data = { amoutn: 100 }
-// console.log(JSON.stringify(oblivionCoin, null, 4))
-console.log("Is blockchain valid? " + oblivionCoin.isChainValid())
-// console.log(oblivionCoin.chian[0])
