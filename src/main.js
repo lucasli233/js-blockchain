@@ -52,15 +52,14 @@ class Blockchain {
 		return this.chain[this.chain.length - 1]
 	}
 
-	minePendingTransactions(miningReward) {
+	minePendingTransactions(miningRewardAddress) {
 		let block = new Block(Date.now(), this.pendingTransactions)
 		block.mineBlock(this.difficult)
-
 		console.log("Block successfully mined!")
-		this.chain.push(block)
 
+		this.chain.push(block)
 		this.pendingTransactions = [
-			new Transaction(null, miningReward, this.miningReward),
+			new Transaction(null, miningRewardAddress, this.miningReward),
 		]
 	}
 
@@ -125,7 +124,6 @@ console.log(
 	"Balance of Lucas is ",
 	monkeCoin.getBalanceOfAddress("lucas-address")
 )
-
 
 console.log("Starting the miner again...")
 monkeCoin.minePendingTransactions("lucas-address")
