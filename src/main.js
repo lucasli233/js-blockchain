@@ -5,6 +5,8 @@ const ec = new EC("secp256k1")
 const myKey = ec.keyFromPrivate(
 	"0b65ada561dacb10a528b15c27ac0bdf5b4c4bf4540967c99eff08262dcfb279"
 )
+
+
 const myWalletAddress = myKey.getPublic("hex")
 
 let monkeCoin = new Blockchain()
